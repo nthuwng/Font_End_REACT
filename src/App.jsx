@@ -8,7 +8,7 @@ const App = () => {
 
   return (
     <>
-      <Header /> 
+      <Header />
       <Outlet />
       <Footer />
     </>
