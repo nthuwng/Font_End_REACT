@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <ul>
       <li>
-        <NavLink class="active" to="/">
+        <NavLink className="active" to="/">
           Home
         </NavLink>
       </li>
