@@ -10,7 +10,6 @@ const ViewUserDetail = (props) => {
     props;
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
-  console.log(dataDetail);
 
   const handleOnChangeFile = (Event) => {
     if (!Event.target.files || Event.target.files.length === 0) {
