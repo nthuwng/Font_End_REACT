@@ -6,7 +6,15 @@ import ViewUserDetail from "./view.user.detail";
 import { deleteUserAPI } from "../../services/api.service";
 
 const UserTable = (props) => {
-  const { dataUsers, loadUser, current, pageSize, total } = props;
+  const {
+    dataUsers,
+    loadUser,
+    current,
+    pageSize,
+    total,
+    setCurrent,
+    setPageSize,
+  } = props;
 
   const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
   const [dataUpdate, setDataUpdate] = useState(null);
@@ -18,7 +26,7 @@ const UserTable = (props) => {
     {
       title: "STT",
       render: (_, record, index) => {
-        return <>{index + 1}</>;
+        return <>{index + 1 + (current - 1) * pageSize}</>;
       },
     },
     {
@@ -89,7 +97,12 @@ const UserTable = (props) => {
   };
 
   const onChange = (pagination, filters, sorter, extra) => {
-    console.log("params", pagination, filters, sorter, extra);
+    if (+pagination.current !== +current) {
+      setCurrent(+pagination.current);
+    }
+    if (+pagination.pageSize !== +pageSize) {
+      setPageSize(+pagination.pageSize);
+    }
   };
   return (
     <>
