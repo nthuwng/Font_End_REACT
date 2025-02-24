@@ -1,9 +1,9 @@
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Popconfirm, Table, notification } from 'antd';
-import UpdateUserModal from './update.user.modal';
-import { useState } from 'react';
-import ViewUserDetail from './view.user.detail';
-import { deleteUserAPI } from '../../services/api.service';
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Popconfirm, Table, notification } from "antd";
+import UpdateUserModal from "./update.user.modal";
+import { useState } from "react";
+import ViewUserDetail from "./view.user.detail";
+import { deleteUserAPI } from "../../services/api.service";
 
 const UserTable = (props) => {
   const { dataUsers, loadUser } = props;
@@ -15,6 +15,12 @@ const UserTable = (props) => {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
 
   const columns = [
+    {
+      title: "STT",
+      render: (_, record, index) => {
+        return <>{index + 1}</>;
+      },
+    },
     {
       title: "Id",
       dataIndex: "_id",
@@ -78,9 +84,9 @@ const UserTable = (props) => {
       notification.error({
         message: "Error delete user",
         description: JSON.stringify(res.message),
-      })
+      });
     }
-  }
+  };
   return (
     <>
       <Table columns={columns} dataSource={dataUsers} rowKey={"_id"} />
