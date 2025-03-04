@@ -57,6 +57,7 @@ const UserForm = (props) => {
         }}
         maskClosable={false}
         okText="CREATE">
+          
         <div style={{ display: "flex", gap: "15px", flexDirection: "column" }}>
           <div>
             <span>Full Name</span>
