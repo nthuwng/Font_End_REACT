@@ -1,29 +1,37 @@
-import { Button, Col, Divider, Form, Input, Row } from "antd";
+import {
+  Button,
+  Col,
+  Divider,
+  Form,
+  Input,
+  Row,
+  message,
+  notification,
+} from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUserAPI } from "../services/api.service";
 import { ArrowRightOutlined } from "@ant-design/icons";
+import { useState } from "react";
 
 const LoginPage = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
-  const onFinish = async (values) => {
-    console.log("Success:", values);
+  const [loading, setLoading] = useState(false);
 
+  const onFinish = async (values) => {
+    setLoading(true);
     const { email, password } = values;
     const res = await loginUserAPI(email, password);
-    console.log("res=>>>", res);
     if (res.data) {
-      notification.success({
-        message: "Login user",
-        description: "Đăng nhập thành công",
-      });
-      navigate("/login");
+      message.success("Đăng nhập thành công");
+      navigate("/");
     } else {
       notification.error({
         message: "Error login user",
         description: JSON.stringify(res.message),
       });
     }
+    setLoading(false);
   };
   return (
     <Row justify={"center"} style={{ marginTop: "30px" }}>
@@ -75,7 +83,10 @@ const LoginPage = () => {
                 justifyContent: "space-between",
                 alignItems: "center",
               }}>
-              <Button onClick={() => form.submit()} type="primary">
+              <Button
+                onClick={() => form.submit()}
+                type="primary"
+                loading={loading}>
                 Login
               </Button>
               <Link to={"/"}>
