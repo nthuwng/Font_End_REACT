@@ -6,10 +6,13 @@ import {
   AuditOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/auth.context";
 
 const Header = () => {
   const [current, setCurrent] = useState("");
+  const { user } = useContext(AuthContext);
+  console.log("chekc data", user);
   const onClick = (e) => {
     console.log("click ", e);
     setCurrent(e.key);
@@ -41,7 +44,7 @@ const Header = () => {
           key: "login",
         },
         {
-          label:" Đăng kí",
+          label: " Đăng kí",
           key: "logout",
         },
       ],
