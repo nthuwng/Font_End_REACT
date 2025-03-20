@@ -18,7 +18,7 @@ const LoginPage = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const {setUser} = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
 
   const onFinish = async (values) => {
     setLoading(true);
@@ -79,7 +79,13 @@ const LoginPage = () => {
                   message: "Không được để trống",
                 },
               ]}>
-              <Input.Password />
+              <Input.Password
+                onKeyDown={(event) => {
+                  if (event.key === "Enter") {
+                    form.submit();
+                  }
+                }}
+              />
             </Form.Item>
             <div
               style={{
