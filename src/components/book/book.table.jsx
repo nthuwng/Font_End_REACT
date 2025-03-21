@@ -2,6 +2,7 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Button, Popconfirm, Table, notification } from "antd";
 import { useEffect, useState } from "react";
 import { fetchBookAPI } from "../../services/api.service";
+import ViewBookDetail from "./book.detail";
 
 const UserTable = (props) => {
   const [dataBook, setDataBook] = useState([]);
@@ -143,6 +144,13 @@ const UserTable = (props) => {
           },
         }}
         onChange={onChange}
+      />
+      <ViewBookDetail
+        isDetailOpen={isDetailOpen}
+        setIsDetailOpen={setIsDetailOpen}
+        dataDetail={dataDetail}
+        setDataDetail={setDataDetail}
+        // loadUser={loadUser}
       />
     </>
   );
